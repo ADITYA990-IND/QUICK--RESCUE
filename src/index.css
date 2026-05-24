@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-red: #ff3c3c;
+  --color-brand-dark: #0f1013;
+  --color-brand-gray: #1b1c22;
+  --color-accent-blue: #38bdf8;
+
+  --animate-card-breath: cardBreath 5s ease-in-out infinite;
+
+  @keyframes cardBreath {
+    0%, 100% {
+      background-color: rgba(15, 16, 19, 0.95);
+      border-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+      background-color: rgba(28, 16, 17, 0.95);
+      border-color: rgba(255, 60, 60, 0.15);
+      box-shadow: 0 25px 60px -10px rgba(255, 60, 60, 0.1), 0 0 20px rgba(255, 60, 60, 0.04);
+    }
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-dark);
+    color: #f3f4f6;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(27, 28, 34, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-heavy {
+  background: rgba(20, 21, 26, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.glass-input:focus {
+  border-color: #ff3c3c;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 60, 60, 0.4), 0 0 30px rgba(255, 60, 60, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 60, 60, 0.8), 0 0 60px rgba(255, 60, 60, 0.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.radar-pulse-ring {
+  animation: radarPulse 2.5s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Custom Hide Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}

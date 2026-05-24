@@ -1,0 +1,9 @@
+{
+  "name": "Quick Rescue",
+  "description": "An AI-powered mobile-first emergency SOS application that detects accidents, triggers automatic emergency countdowns with live tracking, and coordinates with saved contacts, nearby ambulances, and rescue teams.",
+  "requestFramePermissions": [
+    "geolocation",
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
