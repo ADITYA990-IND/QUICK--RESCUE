@@ -1,22 +1,92 @@
+# 🚑 Quick Rescue
 
 <div align="center">
-  <img width="800" alt="Quick Rescue Banner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+
+![Quick Rescue Banner](https://img.shields.io/badge/Quick%20Rescue-Emergency%20SOS-red?style=for-the-badge&logo=applehealth)
+![React Native](https://img.shields.io/badge/React%20Native-Mobile%20App-61DAFB?style=for-the-badge&logo=react)
+![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=nodedotjs)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb)
+![Firebase](https://img.shields.io/badge/Auth-Firebase-FFCA28?style=for-the-badge&logo=firebase)
+
+<h4>⚡ AI-Powered Emergency SOS & Crash Detection Platform</h4>
+<strong>"Every Second Matters."</strong>
+
 </div>
-
-# 🚨 Quick Rescue
-
-**AI-powered mobile-first emergency SOS application**
 
 ---
 
-## 🌟 Features
+## 📌 Overview
 
-- **Automatic Accident Detection**: Detects crashes, falls, and sudden impacts using device sensors.
-- **SOS Countdown & Broadcast**: Triggers an emergency countdown and sends alerts if not cancelled.
-- **Live Location Tracking**: Shares real-time location with emergency contacts and nearby ambulances.
-- **Ambulance Coordination**: Notifies and coordinates with the nearest available ambulances.
-- **Secure Authentication**: Google (Gmail) login with simulated secure flow.
-- **Multi-language Support**: English and Hindi UI.
+**Quick Rescue** is a modern, mobile-first emergency response application designed to provide instant assistance during accidents and critical medical situations. 
+
+By leveraging mobile device sensors (Accelerometer & Gyroscope), the app intelligently detects severe impacts, crashes, or falls. It automatically triggers an emergency countdown, sending real-time GPS locations and automated alerts to emergency contacts and the nearest available ambulance network if not canceled.
+
+---
+
+## ✨ Key Features
+
+* **🚨 Smart Crash Detection:** Utilizes hardware sensors via Expo Sensors to track sudden impacts, severe jerks, and subsequent inactivity. Includes a safety countdown to prevent false alarms.
+* **📍 Live GPS Tracking & Navigation:** Integrated with Google Maps API to provide live ambulance routing, precise location coordinates, and accurate ETA estimations.
+* **🆘 Multi-Channel Emergency SOS:** Automatically broadcasts alerts via SMS (via Twilio) and WhatsApp to pre-configured emergency contacts.
+* **🚑 Ambulance Coordination:** Real-time pairing and communication between victims and nearby ambulance drivers via Socket.IO.
+* **🔐 Secure Authentication:** Seamless user login via Firebase (Gmail) coupled with secure JWT-based API route protection.
+* **🌐 Multi-Language Support:** Localized user interface available in both **English** and **Hindi**.
+
+---
+
+## 🧠 Crash Detection Logic Flow
+
+```text
+[ Sensor Monitoring ] ──> ( Sudden Impact/Jerk Detected )
+                                    │
+                                    ▼
+                        [ Emergency Countdown Starts ]
+                                    │
+                    ┌───────────────┴───────────────┐
+                    ▼                               ▼
+         [ User Cancels Alert ]          [ Countdown Expires ]
+                    │                               │
+                    ▼                               ▼
+            ( System Resets )            ( AUTOMATIC SOS TRIGGERED )
+                                                    │
+                                    ┌───────────────┴───────────────┐
+                                    ▼                               ▼
+                        [ Broadcast Live Location ]     [ Notify Nearby Ambulances ]
+
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology | Description |
+| --- | --- | --- |
+| **Frontend** | `React Native / Expo` | Cross-platform native mobile interface |
+| **Backend** | `Node.js / Express.js` | Scalable API Gateway & core business logic |
+| **Real-time** | `Socket.IO` | Bi-directional live updates & location streaming |
+| **Database** | `MongoDB` | Distributed storage for profiles & incident history |
+| **Auth** | `Firebase Auth / JWT` | Bulletproof client-to-server identity validation |
+| **AI / Alerts** | `Gemini API & Twilio` | Contextual text intelligence & automated SMS routing |
+
+---
+
+## 📂 Project Structure
+
+```bash
+Quick-Rescue/
+├── 📱 mobile-app/         # React Native frontend client
+│   ├── screens/         # Dashboard, Map, Login, and SOS interfaces
+│   ├── components/      # Reusable styled UI elements
+│   ├── services/        # API calls, Location tracking, and Sensor listeners
+│   └── assets/          # Localization strings, icons, and media assets
+├── ⚙️ backend/            # Node.js + Express development server
+│   ├── controllers/     # Modular route logic handlers
+│   ├── models/          # MongoDB structural schemas (User, Ambulance, Incident)
+│   ├── middleware/      # Authentication barriers & error interceptors
+│   └── server.js        # Main Express and Socket.io setup entry point
+└── README.md
+
+```
 
 ---
 
@@ -24,60 +94,85 @@
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+ recommended)
+* **Node.js** (v18+ recommended)
+* **Expo CLI** installed globally (`npm install -g expo-cli`)
 
-### 1. Clone & Install
-
-```bash
-git clone <repo-url>
-cd QUICK\ RESCUE
-npm install
-```
-
-### 2. Install Twilio SDK (for SMS alerts)
+### 1. Repository Setup
 
 ```bash
-npm install twilio
+git clone [https://github.com/your-username/Quick-Rescue.git](https://github.com/your-username/Quick-Rescue.git)
+cd Quick-Rescue
+
 ```
 
-### 3. Environment Variables
+### 2. Environment Configurations
 
-Create a `.env.local` file in the root directory and add:
+#### 🔓 Backend Environment (`backend/.env`)
+
+Create a `.env` file inside the `backend/` directory:
+
+```env
+MONGO_URI="your_mongodb_connection_string"
+JWT_SECRET="your_jwt_signing_key"
+FIREBASE_API_KEY="your_firebase_api_key"
+GOOGLE_MAPS_API_KEY="your_google_maps_api_key"
+PORT=5000
+
+```
+
+#### 🔐 Frontend Environment (`mobile-app/.env.local`)
+
+Create a `.env.local` file inside the `mobile-app/` directory:
 
 ```env
 GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 TWILIO_ACCOUNT_SID="YOUR_TWILIO_ACCOUNT_SID"
 TWILIO_AUTH_TOKEN="YOUR_TWILIO_AUTH_TOKEN"
 TWILIO_PHONE_NUMBER="YOUR_TWILIO_PHONE_NUMBER"
+
 ```
 
-Get your keys from [Google AI Studio](https://ai.studio/) and [Twilio Console](https://console.twilio.com/).
+### 3. Installation & Local Development
 
-### 4. Run Locally
+#### Setup Backend Server
 
 ```bash
+cd backend
+npm install
 npm run dev
+
 ```
 
-App will be available at [http://localhost:3000](http://localhost:3000)
+> 💡 *The backend server will live-reload and spin up on port `5000`.*
+
+#### Setup Mobile Client
+
+```bash
+cd ../mobile-app
+npm install
+npm start
+
+```
+
+> 📱 *Scan the generated Metro QR code with your **Expo Go** app (Android/iOS) to launch the app on your physical device.*
 
 ---
 
-## 📝 Project Structure
+## 📈 Future Roadmap
 
-- `src/` — React components, types, and styles
-- `server.ts` — Express server with Vite integration
-- `vite.config.ts` — Vite + Tailwind CSS config
-- `package.json` — Scripts and dependencies
-
----
-
-## 📱 About
-
-Quick Rescue is designed for rapid, autonomous emergency response. It leverages AI and real-time communication to protect users in critical situations.
-
-View your app in AI Studio: [AI Studio App Link](https://ai.studio/apps/0b0650e2-b495-455a-a80f-07204e1e139c)
+* ⌚ **Smartwatch Integration:** Sync sensor analysis with Wear OS and Apple Watch for fallback fall-detection metrics.
+* 🎙️ **Voice-Activated SOS:** Trigger immediate backup protocols using offline phrase-matching algorithms.
+* 🛜 **Offline Mesh Mode:** Utilize Bluetooth/P2P capabilities to signal nearby users when cellular signals are completely dropped.
 
 ---
 
-**Made with ❤️ for safety and innovation.**
+## 👨‍💻 Developer
+
+**Aditya Raj Chourasiya** *Passionate about Full-Stack ecosystems, real-time architectures, and impact-driven technologies.*
+
+---
+
+## ⭐ Support
+
+If you find this project meaningful or helpful, please consider **starring** the repository, **forking** it to add your custom features, or **following** for future updates!
+
