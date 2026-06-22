@@ -1204,7 +1204,7 @@ export default function App() {
                       <div className="flex justify-between items-center bg-white/5 p-3 rounded-2xl">
                         <div>
                           <span className="text-xs text-gray-400 font-mono tracking-widest block uppercase">{t.welcome}</span>
-                          <span className="text-sm font-bold text-white block truncate max-w-[150px]">{profile?.fullName || "Adityaraj Chourasiya"}</span>
+                          <span className="text-sm font-bold text-white block truncate max-w-[150px]">{profile?.fullName || "Guest User"}</span>
                         </div>
                         <div className="flex items-center space-x-1 text-xs font-semibold text-emerald-400 font-mono bg-emerald-500/10 px-2 py-1 rounded-lg">
                           <CheckCircle2 className="w-4 h-4" />

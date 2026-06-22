@@ -25,9 +25,9 @@ const INITIAL_AMBULANCES: Ambulance[] = [
   {
     id: "amb_1",
     name: "Alpha Rescue 01",
-    driverName: "Daniel K. Vance",
-    phone: "+1 (555) 911-3042",
-    coordinates: { latitude: 37.7885, longitude: -122.4082, address: "Union Square Metro Station" },
+    driverName: "Aditya ",
+    phone: "6307687990",
+    coordinates: { latitude: 37.7885, longitude: -122.4082, address: "Chandan Hospital,Lucknow" },
     status: "available",
     licensePlate: "RESC-911A",
     rating: 4.9,
@@ -35,9 +35,9 @@ const INITIAL_AMBULANCES: Ambulance[] = [
   {
     id: "amb_2",
     name: "TraumaCare Swift 14",
-    driverName: "Sarah J. Stone",
-    phone: "+1 (555) 911-8051",
-    coordinates: { latitude: 37.7719, longitude: -122.4201, address: "Civic Center - Van Ness Ave" },
+    driverName: "Kaushlendra",
+    phone: "9517028688",
+    coordinates: { latitude: 37.7719, longitude: -122.4201, address: "Lohiya Hospital" },
     status: "available",
     licensePlate: "LIFE-14X",
     rating: 4.8,
@@ -45,9 +45,9 @@ const INITIAL_AMBULANCES: Ambulance[] = [
   {
     id: "amb_3",
     name: "Metro Med-Force 07",
-    driverName: "Marcus Brody",
-    phone: "+1 (555) 911-7009",
-    coordinates: { latitude: 37.7942, longitude: -122.3965, address: "Financial District - Battery St" },
+    driverName: "Abhinav",
+    phone: "9451570212",
+    coordinates: { latitude: 37.7942, longitude: -122.3965, address: "MAX Hospital" },
     status: "available",
     licensePlate: "MEDF-07B",
     rating: 4.7,
@@ -57,7 +57,7 @@ const INITIAL_AMBULANCES: Ambulance[] = [
 let db: DBStructure = {
   profile: {
     id: "user_101",
-    fullName: "Adityaraj Chourasiya",
+    fullName: "",
     age: 24,
     bloodGroup: "O+",
     city: "San Francisco",
@@ -73,8 +73,8 @@ let db: DBStructure = {
   alerts: [
     {
       id: "alert_old_1",
-      userId: "user_101",
-      userName: "Adityaraj Chourasiya",
+      userId: "user_mock_01",
+      userName: "Guest user 1",
       userPhone: "+1 (555) 382-9481",
       bloodGroup: "O+",
       medicalConditions: "Latex Allergy, Asthmatic",
@@ -89,8 +89,8 @@ let db: DBStructure = {
     },
     {
       id: "alert_old_2",
-      userId: "user_101",
-      userName: "Adityaraj Chourasiya",
+      userId: "user_Mock_02",
+      userName: "Guest user 02",
       userPhone: "+1 (555) 382-9481",
       bloodGroup: "O+",
       medicalConditions: "Latex Allergy, Asthmatic",
