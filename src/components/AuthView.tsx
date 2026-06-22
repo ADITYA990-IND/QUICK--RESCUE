@@ -14,9 +14,9 @@ interface UserProfileObj {
 
 export function AuthView({ onLoginSuccess }: AuthViewProps) {
   const [isRegistering, setIsRegistering] = useState(false);
-  const [email, setEmail] = useState("chourasiyaadityaraj@gmail.com");
-  const [password, setPassword] = useState("•••••••••");
-  const [fullName, setFullName] = useState("Adityaraj Chourasiya");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [feedback, setFeedback] = useState("");
 
@@ -29,8 +29,8 @@ export function AuthView({ onLoginSuccess }: AuthViewProps) {
       setTimeout(() => {
         setIsLoading(false);
         onLoginSuccess({
-          fullName: isRegistering ? fullName : "Adityaraj Chourasiya",
-          email: email || "chourasiyaadityaraj@gmail.com",
+          fullName: isRegistering ? fullName : "",
+          email: email || "",
           photoUrl: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=120"
         });
       }, 800);
