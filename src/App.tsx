@@ -888,30 +888,11 @@ export default function App() {
     setDiagnosticsLogs(prev => [`[${new Date().toLocaleTimeString()}] ${txt}`, ...prev.slice(0, 16)]);
   };
 
-  const handleAuthComplete = (googleUser: any) => {
-    // googleUser: UserProfileObj ko 'any' kar diya taaki emergencyContacts ki error chali jaye
-    const fallbackName = googleUser?.fullName || googleUser?.email?.split('@')[0] || "User";
-    
-    const updatedUser = {
-        ...googleUser,
-        fullName: fallbackName,
-        emergencyContacts: googleUser?.emergencyContacts || []
-    };
-
-    setCurrentUser(updatedUser);
-    
-    // setProfile ki error hatane ke liye isko global window/any scope se check kiya
-    if (typeof (window as any).setProfile !== 'undefined') {
-        (window as any).setProfile(updatedUser);
-    }
-
-    setUserAuthed(true);
-    addDiagnosticLog(`Gmail logged in successfully standard Firebase: ${googleUser?.email}`);
-};
-
+  const handleAuthComplete = (googleUser: UserProfileObj) => {
+    setCurrentUser(googleUser);
     setUserAuthed(true);
     addDiagnosticLog(`Gmail logged in successfully standard Firebase: ${googleUser.email}`);
-};
+  };
 
   // Setup initial placeholder contacts if profile empty
   const handleAddNewContact = (newContact: { name: string; phone: string; relation: string }) => {
@@ -1223,7 +1204,7 @@ export default function App() {
                       <div className="flex justify-between items-center bg-white/5 p-3 rounded-2xl">
                         <div>
                           <span className="text-xs text-gray-400 font-mono tracking-widest block uppercase">{t.welcome}</span>
-                          <span className="text-sm font-bold text-white block truncate max-w-[150px]">{profile?.fullName || (profile as any)?.email?.split('@')[0] || "Guest User"}</span>
+                          <span className="text-sm font-bold text-white block truncate max-w-[150px]">{profile?.fullName || "Adityaraj Chourasiya"}</span>
                         </div>
                         <div className="flex items-center space-x-1 text-xs font-semibold text-emerald-400 font-mono bg-emerald-500/10 px-2 py-1 rounded-lg">
                           <CheckCircle2 className="w-4 h-4" />
@@ -1498,10 +1479,10 @@ export default function App() {
                             </div>
                           </div>
                         ) : (
-    <div className="text-center py-4 bg-white/5 rounded-2xl">
-       <span className="text-gray-400 text-xs">No simulated contacts configured. Click below to append.</span>
-    </div>
-  )}
+                          <div className="text-center py-4 bg-white/5 rounded-2xl">
+                            <span className="text-gray-400 text-xs">Waiting for master API profile parameters...</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
