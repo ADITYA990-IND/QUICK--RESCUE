@@ -888,11 +888,30 @@ export default function App() {
     setDiagnosticsLogs(prev => [`[${new Date().toLocaleTimeString()}] ${txt}`, ...prev.slice(0, 16)]);
   };
 
-  const handleAuthComplete = (googleUser: UserProfileObj) => {
-    setCurrentUser(googleUser);
+  const handleAuthComplete = (googleUser: any) => {
+    // googleUser: UserProfileObj ko 'any' kar diya taaki emergencyContacts ki error chali jaye
+    const fallbackName = googleUser?.fullName || googleUser?.email?.split('@')[0] || "User";
+    
+    const updatedUser = {
+        ...googleUser,
+        fullName: fallbackName,
+        emergencyContacts: googleUser?.emergencyContacts || []
+    };
+
+    setCurrentUser(updatedUser);
+    
+    // setProfile ki error hatane ke liye isko global window/any scope se check kiya
+    if (typeof (window as any).setProfile !== 'undefined') {
+        (window as any).setProfile(updatedUser);
+    }
+
+    setUserAuthed(true);
+    addDiagnosticLog(`Gmail logged in successfully standard Firebase: ${googleUser?.email}`);
+};
+
     setUserAuthed(true);
     addDiagnosticLog(`Gmail logged in successfully standard Firebase: ${googleUser.email}`);
-  };
+};
 
   // Setup initial placeholder contacts if profile empty
   const handleAddNewContact = (newContact: { name: string; phone: string; relation: string }) => {
@@ -1479,10 +1498,10 @@ export default function App() {
                             </div>
                           </div>
                         ) : (
-                          <div className="text-center py-4 bg-white/5 rounded-2xl">
-                            <span className="text-gray-400 text-xs">Waiting for master API profile parameters...</span>
-                          </div>
-                        )}
+    <div className="text-center py-4 bg-white/5 rounded-2xl">
+       <span className="text-gray-400 text-xs">No simulated contacts configured. Click below to append.</span>
+    </div>
+  )}
                       </div>
                     </div>
                   )}
